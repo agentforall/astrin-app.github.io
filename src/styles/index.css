@@ -1,0 +1,8 @@
+@import "https://unpkg.com/open-props";
+
+body {
+    width: 100dvw;
+    height: 100dvh;
+    overflow: hidden;
+    padding: 40px;
+}

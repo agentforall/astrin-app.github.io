@@ -1,0 +1,30 @@
+---
+import '@picocss/pico'
+import '../components/editor.css'
+import EditorS from '../components/editor.svelte'
+import { ViewTransitions } from 'astro:transitions';
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astrin</title>
+		<ViewTransitions/>
+	</head>
+	<body>
+		<EditorS client:only="svelte"/>
+	</body>
+</html>
+
+
+<style>
+	body {
+		overflow: hidden !important;
+	}
+	nav {
+		padding-inline: 40px;
+	}
+</style>
