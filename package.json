@@ -1,0 +1,26 @@
+{
+  "name": "",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/solid-js": "^3.0.2",
+    "@astrojs/svelte": "^5.0.1",
+    "@ffmpeg/ffmpeg": "^0.12.9",
+    "@ffmpeg/util": "^0.12.1",
+    "@picocss/pico": "^2.0.0-alpha1",
+    "astro": "^4.0.6",
+    "solid-js": "^1.8.7",
+    "svelte": "^4.0.0"
+  },
+  "devDependencies": {
+    "postcss": "^8.4.32",
+    "postcss-custom-media": "^10.0.2"
+  }
+}
