@@ -64,15 +64,14 @@ downloadURL = function(data, fileName) {
     })
     async function loadFFMpeg() {
         try {   
-        let baseURL = `https://unpkg.com/@ffmpeg/core@0.12.5/dist/esm`
         ffmpeg = new FFmpeg()
             ffmpeg.on("progress", (p) => {
                 console.log(p.progress * 100)
                     $progress = p.progress * 100
             })
             await ffmpeg.load({
-                coreURL: `${baseURL}/ffmpeg-core.js`,
-                wasmURL: `${baseURL}/ffmpeg-core.wasm`,
+                coreURL: `${location.origin}/ffmpeg-core.js`,
+                wasmURL: `${location.origin}/ffmpeg-core.wasm`,
             });
             mode = "loaded"
         }catch (e) {
