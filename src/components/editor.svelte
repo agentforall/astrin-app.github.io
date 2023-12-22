@@ -122,9 +122,6 @@ downloadURL = function(data, fileName) {
 <div  class="parent" class:loading={mode == "loading"} aria-busy={mode == "loading"}>
     <div>
         <h1>Start Editing</h1>
-        <button class="mode-switch">
-            <canvas bind:this={canvas} width="90" height="50"></canvas>
-        </button>
     </div>
     <div class:hidden={mode != "file__selected"}  class=" select">
         <h1>Convert</h1>

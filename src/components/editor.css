@@ -16,6 +16,11 @@
         display: none;
     }
 }
+
+.parent[aria-busy=true] > *{
+    display: none;
+}
+
 .parent {
     display: flex;
     flex-direction: column;
@@ -44,9 +49,3 @@
     height: 100%;
 }
 
-.mode-switch {
-    background-color: transparent;
-    border: none;
-    outline: none;
-    box-shadow: none;
-}
