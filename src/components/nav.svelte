@@ -67,10 +67,15 @@
   </nav>
 
 <style>
+@import "https://unpkg.com/open-props";
     nav {
         padding-inline:30px;
+        background-color: var(--gray-9);
+        box-shadow: var(--shadow-3);
     }
-
+    nav ul li strong {
+        color: var(--gray-2)
+    }
     .mode-switch {
     background-color: transparent;
     border: none;
