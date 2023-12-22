@@ -32,3 +32,21 @@
 .hidden {
     display: none;
 }
+
+.input__parent {
+    border: dotted 4px black;
+}
+
+.input__parent input {
+    width: 100%;
+    margin: 0;
+    padding: var(--size-10);
+    height: 100%;
+}
+
+.mode-switch {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}

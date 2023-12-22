@@ -4,8 +4,8 @@
     import { fetchFile, toBlobURL } from '@ffmpeg/util';
     import { derived, writable } from "svelte/store";
   import { tweened } from "svelte/motion";
+  import {Rive} from "@rive-app/canvas"
   var downloadBlob, downloadURL;
-
 downloadBlob = function(data, fileName, mimeType) {
   var blob, url;
   blob = new Blob([data], {
@@ -43,6 +43,7 @@ downloadURL = function(data, fileName) {
     let fileGenre = writable("");
     let ffmpeg: FFmpeg;
     let progress = tweened(0);
+    let canvas: HTMLCanvasElement;
     let mode = "loading"
     let fileInput: HTMLInputElement;
     let fileName = writable("");
@@ -82,6 +83,8 @@ downloadURL = function(data, fileName) {
 
     onMount(() => {
         loadFFMpeg()
+
+
     })
 
     $: console.log(mode,$convertableFileTypes)
@@ -97,15 +100,15 @@ downloadURL = function(data, fileName) {
     let startConversion = async () => {
         try {
             mode = "progress__start"
-            let date = new Date().toISOString().split('T')[0].replaceAll("-","")
+            let date = Math.floor(Math.random() * 100000)
             let inputFileName = date + "." + $fileName
             console.log(date+"."+outputFileInput)
             let fileArrayBuffer = await fileInput.files.item(0).arrayBuffer()
             let fileUintArray = new Uint8Array(fileArrayBuffer)
             await ffmpeg.writeFile(inputFileName,fileUintArray)
-            await ffmpeg.exec(['-i',inputFileName, date+"."+outputFileInput]);
+            await ffmpeg.exec(['-i',inputFileName,"-c","copy",date+"."+outputFileInput]);
             let out = await ffmpeg.readFile(date+"."+outputFileInput)
-            downloadBlob(out, date,`image/${outputFileInput}`)
+            downloadBlob(out, date + "."+outputFileInput,`${$fileGenre}/${outputFileInput}`)
             setTimeout(() => {
             location.reload()
 
@@ -119,6 +122,9 @@ downloadURL = function(data, fileName) {
 <div  class="parent" class:loading={mode == "loading"} aria-busy={mode == "loading"}>
     <div>
         <h1>Start Editing</h1>
+        <button class="mode-switch">
+            <canvas bind:this={canvas} width="90" height="50"></canvas>
+        </button>
     </div>
     <div class:hidden={mode != "file__selected"}  class=" select">
         <h1>Convert</h1>
@@ -142,6 +148,7 @@ downloadURL = function(data, fileName) {
         </div>
     {/if}
     {#if mode == "progress__start"}
-        <progress value={$progress} max="100"></progress>
+        <progress data-tooltip={$progress} value={$progress} max="100"></progress>
+        <span>{$progress}%</span>
     {/if}
 </div>

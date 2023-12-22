@@ -1,0 +1,57 @@
+---
+import { ViewTransitions } from "astro:transitions";
+import Nav from "../components/nav.svelte";
+---
+
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astrin</title>
+		<ViewTransitions/>
+	</head>
+	<body>
+		<Nav transition:persist client:only="svelte"/>
+        <slot/>
+
+		<script>
+			function theme(){
+				let storedTheme = localStorage.getItem("theme")
+				if (!storedTheme){
+					localStorage.setItem("theme","dark")
+					document.querySelector("html").setAttribute("data-theme", "dark")
+					return
+				}else {
+					let theme = localStorage.getItem("theme")
+					document.querySelector("html").setAttribute("data-theme",theme)
+
+				}
+			}
+			document.addEventListener("storage", () => {
+				theme()
+			})
+
+			document.addEventListener('astro:after-swap', ev => {
+				let theme = localStorage.getItem("theme")
+					document.querySelector("html").setAttribute("data-theme",theme)
+			});
+			theme()
+		</script>
+	</body>
+</html>
+
+<style>
+	*{
+    transition: all 1s;
+}
+
+.mode-switch {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+</style>

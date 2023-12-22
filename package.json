@@ -15,7 +15,9 @@
     "@ffmpeg/ffmpeg": "^0.12.9",
     "@ffmpeg/util": "^0.12.1",
     "@picocss/pico": "^2.0.0-alpha1",
+    "@rive-app/canvas": "^2.9.0",
     "astro": "^4.0.6",
+    "rive-js": "^0.7.33",
     "solid-js": "^1.8.7",
     "svelte": "^4.0.0"
   },
