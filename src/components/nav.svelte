@@ -70,6 +70,7 @@
 @import "https://unpkg.com/open-props";
     nav {
         padding-inline:30px;
+        box-sizing: border-box;
         background-color: var(--gray-9);
         box-shadow: var(--shadow-3);
     }

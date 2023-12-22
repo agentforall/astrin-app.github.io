@@ -15,7 +15,10 @@ import Nav from "../components/nav.svelte";
 	</head>
 	<body>
 		<Nav transition:persist client:only="svelte"/>
-        <slot/>
+		<div class="content">
+
+			<slot/>
+		</div>
 
 		<script>
 			function theme(){
@@ -46,8 +49,15 @@ import Nav from "../components/nav.svelte";
 <style>
 	*{
     transition: all 1s;
+	margin: 0;
+	padding: 0;
 }
-
+.content{
+	width: 100dvw;
+    height: 100dvh;
+    overflow: hidden;
+    padding: 40px;
+}
 .mode-switch {
     background-color: transparent;
     border: none;
